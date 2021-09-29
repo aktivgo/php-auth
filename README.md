@@ -1,2 +1,2 @@
 # php-auth
-1st task senler stady
+1st task senler study
