@@ -9,7 +9,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: "Calibri", sans-serif;
-    background-color: #dbccff;
+    background-color: #F2C79D;
 }
 
 form {
@@ -23,25 +23,40 @@ input {
     padding: 10px;
     outline: none;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
+    outline: #5281A1;
 }
 
 button {
     font-weight: bold;
     margin: 10px 110px;
     padding: 15px;
-    background-color: #b9ffff;
+    background-color: #5281A1;
     border: unset;
     cursor: pointer;
-    border-radius: 25px;
+    border-radius: 5px;
 }
 
 a {
     font-weight: bold;
     text-decoration: none;
+    color: #D92E48;
 }
 
 p {
     margin: 10px 0;
-    align-self: center;
+    text-align: center;
+}
+
+.message {
+    border: 2px solid #ED4723;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.logout {
+    margin: 10px 0;
+    color: #D92E48;
 }

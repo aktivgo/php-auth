@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if($_SESSION['user']){
+        header('Location: profile.php');
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,18 +18,13 @@
 </head>
 <body>
 
-    <!-- Authorization Form -->
+<!-- Authorization Form -->
 
-    <form action="">
-        <label>Логин</label>
-        <input type="text" placeholder="Введите логин">
-        <label>Пароль</label>
-        <input type="password" placeholder="Введите пароль">
-        <button>Войти</button>
-        <p>
-            Нет аккаунта?  <a href="/register.php">Зарегистрируйтесь</a>!
-        </p>
-    </form>
+<form>
+    <button type="submit" formaction="auth.php">Авторизация</button>
+    <label for="" style="align-self: center">или</label>
+    <button type="submit" formaction="reg.php">Регистрация</button>
+</form>
 
 </body>
 </html>
