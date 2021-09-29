@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Calibri", sans-serif;
+    background-color: #dbccff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+input {
+    margin: 10px 0;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+}
+
+button {
+    font-weight: bold;
+    margin: 10px 110px;
+    padding: 15px;
+    background-color: #b9ffff;
+    border: unset;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+p {
+    margin: 10px 0;
+    align-self: center;
+}
