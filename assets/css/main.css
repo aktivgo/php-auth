@@ -9,7 +9,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: "Calibri", sans-serif;
-    background-color: #F2C79D;
+    background-color: #F7F1E9;
 }
 
 form {
@@ -24,14 +24,13 @@ input {
     outline: none;
     border: none;
     border-radius: 5px;
-    outline: #5281A1;
 }
 
 button {
     font-weight: bold;
     margin: 10px 110px;
     padding: 15px;
-    background-color: #5281A1;
+    background-color: #AB9DAE;
     border: unset;
     cursor: pointer;
     border-radius: 5px;
@@ -40,7 +39,7 @@ button {
 a {
     font-weight: bold;
     text-decoration: none;
-    color: #D92E48;
+    color: #AA4345;
 }
 
 p {
@@ -49,7 +48,7 @@ p {
 }
 
 .message {
-    border: 2px solid #ED4723;
+    border: 2px solid #AA4345;
     border-radius: 5px;
     padding: 10px;
     text-align: center;
@@ -57,6 +56,9 @@ p {
 }
 
 .logout {
-    margin: 10px 0;
-    color: #D92E48;
+    color: #AA4345;
+}
+
+.required_fields {
+    text-align: left;
 }

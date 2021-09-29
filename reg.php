@@ -21,21 +21,39 @@
     <!-- Registration Form -->
 
     <form action="includes/signup.php" method="post" enctype="multipart/form-data">
-        <label>ФИО</label>
-        <input type="text" name="full_name" placeholder="Введите своё полное имя">
-        <label>Логин</label>
-        <input type="text" name="login" placeholder="Придуймате логин">
+        <label>
+            ФИО или ник
+            <label style="color: #AA4345">*</label>
+        </label>
+        <input type="text" name="full_name" placeholder="Введите своё имя или придумайте ник">
+        <label>
+            Логин
+            <label style="color: #AA4345">*</label>
+        </label>
+        <input type="text" name="login" placeholder="Придумайте логин">
         <label>Почта</label>
         <input type="email" name="email" placeholder="Введите свой адрес электронной почты">
         <label>Изображение профиля</label>
         <input type="file" name="avatar">
-        <label>Пароль</label>
+        <label>
+            Пароль
+            <label style="color: #AA4345">*</label>
+        </label>
         <input type="password" name="password" placeholder="Придумайте пароль">
-        <label>Подтвердение пароля</label>
+        <label>
+            Подтверждение пароля
+            <label style="color: #AA4345">*</label>
+        </label>
         <input type="password" name="password_confirm" placeholder="Подтвердите пароль">
+        <p class="required_fields">
+            <label style="color:#AA4345;">
+                *
+            </label>
+            - обязательные поля
+        </p>
         <button type="submit">Зарегистрироваться</button>
         <p>
-            Уже есть аккаунт?  <a href="/auth.php">Авторизируйтесь</a>!
+            Уже есть аккаунт?  <a href="/auth.php">Авторизируйтесь!</a>
         </p>
         <?php
             if($_SESSION['message']) {

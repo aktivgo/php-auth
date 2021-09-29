@@ -22,12 +22,12 @@
 
     <form action="includes/signin.php" method="post">
         <label>Логин</label>
-        <input type="text" name="login" placeholder="Введите логин">
+        <input type="text" name="login" class="login" placeholder="Введите логин">
         <label>Пароль</label>
-        <input type="password" name="password" placeholder="Введите пароль">
+        <input type="password" name="password" class="password" placeholder="Введите пароль">
         <button type="submit">Войти</button>
         <p>
-            Нет аккаунта?  <a href="/reg.php">Зарегистрируйтесь</a>!
+            Нет аккаунта?  <a href="/reg.php">Зарегистрируйтесь!</a>
         </p>
         <?php
             if($_SESSION['message']) {

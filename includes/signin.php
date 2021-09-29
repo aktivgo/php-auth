@@ -21,6 +21,6 @@
         header('Location: ../profile.php');
 
     } else {
-        $_SESSION['message'] = 'Не верный логин или пароль';
+        $_SESSION['message'] = 'Неверный логин или пароль';
         header('Location: ../auth.php');
     }
