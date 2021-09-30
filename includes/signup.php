@@ -1,81 +1,110 @@
 <?php
     session_start();
-    require_once 'connect.php';
-    global $connect;
+    require_once  'Database/connect.php';
 
-    $full_name = $_POST['full_name'];
-    $login = $_POST['login'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $password_confirm = $_POST['password_confirm'];
+    $data = [
+        'full_name' => $_POST['full_name'],
+        'login' => $_POST['login'],
+        'email' => $_POST['email'],
+        'path' => NULL,
+        'password' => $_POST['password'],
+        'password_confirm' => $_POST['password_confirm']
+    ];
 
-    $check_login = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login'");
-    if(mysqli_num_rows($check_login) > 0) {
+    $check_login = checkLogin();
+
+    if($check_login) {
         $response = [
-            "status" => false,
-            "type" => 1,
-            "message" => "Такой логин уже существует",
-            "fields" => ['login']
+            'status' => false,
+            'type' => 1,
+            'message' => 'Такой логин уже существует',
+            'fields' => ['login']
         ];
         echo json_encode($response);
         die();
     }
 
     $error_fields = [];
-    if($full_name === ''){
+    if($data['full_name'] === ''){
         $error_fields[] = 'full_name';
     }
-    if($login === ''){
+    if($data['login'] === ''){
         $error_fields[] = 'login';
     }
-    if($email != '' && !filter_var($email, FILTER_VALIDATE_EMAIL)){
+    if($data['email'] != '' && !filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
         $error_fields[] = 'email';
     }
-    if($password === ''){
+    if($data['password'] === ''){
         $error_fields[] = 'password';
     }
-    if($password_confirm === ''){
+    if($data['password_confirm'] === ''){
         $error_fields[] = 'password_confirm';
     }
 
     if(!empty($error_fields)){
         $response = [
-            "status" => false,
-            "type" => 1,
-            "message" => "Проверьте правильность полей",
-            "fields" => $error_fields
+            'status' => false,
+            'type' => 1,
+            'message' => 'Проверьте правильность полей',
+            'fields' => $error_fields
         ];
         echo json_encode($response);
 
         die();
     }
 
-    if($password === $password_confirm) {
+    if($data['password'] === $data['password_confirm']) {
         if ($_FILES['avatar']['name']) {
             $path = 'uploads/' . time() . $_FILES['avatar']['name'];
             if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path)) {
                 $response = [
-                    "status" => false,
-                    "type" => 2,
-                    "message" => "Ошибка при загрузке изображения",
+                    'status' => false,
+                    'type' => 2,
+                    'message' => 'Ошибка при загрузке изображения',
                 ];
                 echo json_encode($response);
             }
-        } else {
-            $path = NULL;
+            $data['path'] = $path;
         }
 
-        $password = md5($password);
+        $password = md5($data['password']);
 
-        mysqli_query($connect, "INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `avatar`, `password`) VALUES (NULL, '$full_name', '$login', '$email', '$path', '$password')");
+        setData();
+
         $response = [
-            "status" => true,
-            "message" => "Регистрация прошла успешно!",
+            'status' => true,
+            'message' => 'Регистрация прошла успешно!',
         ];
     } else {
         $response = [
-            "status" => false,
-            "message" => "Пароли не совпадают",
+            'status' => false,
+            'message' => 'Пароли не совпадают',
         ];
     }
     echo json_encode($response);
+
+    function checkLogin(){
+        global $DBH, $data;
+        try {
+            $STH = $DBH->prepare("SELECT * FROM users WHERE login = ?");
+            $STH->execute(array($data['login']));
+            return $STH->fetch(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
+    function setData(){
+        global $DBH, $data, $path;
+        try {
+            $STH = $DBH->prepare("INSERT INTO users VALUES (NULL, :full_name, :login, :email, :path, :password, :password_confirm)");
+            $STH->execute($data);
+        }
+        catch(PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+
+    }

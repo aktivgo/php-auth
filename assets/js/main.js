@@ -35,7 +35,6 @@ $('.login-btn').click(function (e){
     });
 });
 
-
 /*
     Getting avatar from filed
  */
