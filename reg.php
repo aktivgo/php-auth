@@ -20,7 +20,7 @@
 
     <!-- Registration Form -->
 
-    <form action="includes/signup.php" method="post" enctype="multipart/form-data">
+    <form>
         <label>
             ФИО или ник
             <label style="color: #AA4345">*</label>
@@ -49,20 +49,18 @@
             <label style="color:#AA4345;">
                 *
             </label>
-            - обязательные поля
+            - обязательное поле
         </p>
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit" class="register-btn">Зарегистрироваться</button>
         <p>
-            Уже есть аккаунт?  <a href="/auth.php">Авторизируйтесь!</a>
+            Уже есть аккаунт?  <a href="auth.php">Авторизируйтесь!</a>
         </p>
-        <?php
-            if($_SESSION['message']) {
-                 echo '<p class="message">' . $_SESSION['message'] . '</p>';
-            }
-            unset($_SESSION['message']);
-        ?>
+        <p class="message none"></p>
 
     </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 </html>

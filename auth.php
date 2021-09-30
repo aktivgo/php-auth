@@ -20,22 +20,20 @@
 
     <!-- Authorization Form -->
 
-    <form action="includes/signin.php" method="post">
+    <form>
         <label>Логин</label>
         <input type="text" name="login" class="login" placeholder="Введите логин">
         <label>Пароль</label>
         <input type="password" name="password" class="password" placeholder="Введите пароль">
-        <button type="submit">Войти</button>
+        <button type="submit" class="login-btn">Войти</button>
         <p>
             Нет аккаунта?  <a href="/reg.php">Зарегистрируйтесь!</a>
         </p>
-        <?php
-            if($_SESSION['message']) {
-                echo '<p class="message">' . $_SESSION['message'] . '</p>';
-            }
-            unset($_SESSION['message']);
-        ?>
+        <p class="message none"></p>
     </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 </html>

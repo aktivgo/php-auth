@@ -9,29 +9,73 @@
     $password = $_POST['password'];
     $password_confirm = $_POST['password_confirm'];
 
+    $check_login = mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login'");
+    if(mysqli_num_rows($check_login) > 0) {
+        $response = [
+            "status" => false,
+            "type" => 1,
+            "message" => "Такой логин уже существует",
+            "fields" => ['login']
+        ];
+        echo json_encode($response);
+        die();
+    }
+
+    $error_fields = [];
+    if($full_name === ''){
+        $error_fields[] = 'full_name';
+    }
+    if($login === ''){
+        $error_fields[] = 'login';
+    }
+    if($email != '' && !filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $error_fields[] = 'email';
+    }
+    if($password === ''){
+        $error_fields[] = 'password';
+    }
+    if($password_confirm === ''){
+        $error_fields[] = 'password_confirm';
+    }
+
+    if(!empty($error_fields)){
+        $response = [
+            "status" => false,
+            "type" => 1,
+            "message" => "Проверьте правильность полей",
+            "fields" => $error_fields
+        ];
+        echo json_encode($response);
+
+        die();
+    }
+
     if($password === $password_confirm) {
-        if($full_name != NULL && $login != NULL && $password != NULL && $password_confirm != NULL) {
-            if ($_FILES['avatar']['name']) {
-                $path = 'uploads/' . time() . $_FILES['avatar']['name'];
-                if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path)) {
-                    $_SESSION['message'] = 'Ошибка при загрузке изображения';
-                    header('Location: ../reg.php');
-                }
-            } else {
-                $path = NULL;
+        if ($_FILES['avatar']['name']) {
+            $path = 'uploads/' . time() . $_FILES['avatar']['name'];
+            if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path)) {
+                $response = [
+                    "status" => false,
+                    "type" => 2,
+                    "message" => "Ошибка при загрузке изображения",
+                ];
+                echo json_encode($response);
             }
-
-            $password = md5($password);
-
-            mysqli_query($connect, "INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `avatar`, `password`) VALUES (NULL, '$full_name', '$login', '$email', '$path', '$password')");
-            $_SESSION['message'] = 'Регистрация прошла успешно!';
-            header('Location: ../auth.php');
         } else {
-            $_SESSION['message'] = 'Заполните все обязательные поля';
-            header('Location: ../reg.php');
+            $path = NULL;
         }
 
+        $password = md5($password);
+
+        mysqli_query($connect, "INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `avatar`, `password`) VALUES (NULL, '$full_name', '$login', '$email', '$path', '$password')");
+        $response = [
+            "status" => true,
+            "message" => "Регистрация прошла успешно!",
+        ];
     } else {
-        $_SESSION['message'] = 'Пароли не совпадают';
-        header('Location: ../reg.php');
+        $response = [
+            "status" => false,
+            "message" => "Пароли не совпадают",
+        ];
     }
+    echo json_encode($response);

@@ -20,6 +20,7 @@
 
 <!-- Authorization Form -->
 
+
 <form>
     <button type="submit" formaction="auth.php">Авторизация</button>
     <label for="" style="align-self: center">или</label>
