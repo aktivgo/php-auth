@@ -8,8 +8,9 @@
         'email' => $_POST['email'],
         'path' => NULL,
         'password' => $_POST['password'],
-        'password_confirm' => $_POST['password_confirm']
     ];
+    $password_confirm = $_POST['password_confirm'];
+
 
     $check_login = checkLogin();
 
@@ -53,7 +54,7 @@
         die();
     }
 
-    if($data['password'] === $data['password_confirm']) {
+    if($data['password'] === $password_confirm) {
         if ($_FILES['avatar']['name']) {
             $path = 'uploads/' . time() . $_FILES['avatar']['name'];
             if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path)) {
@@ -67,7 +68,7 @@
             $data['path'] = $path;
         }
 
-        $password = md5($data['password']);
+        $data['password'] = md5($data['password']);
 
         setData();
 
@@ -97,9 +98,9 @@
     }
 
     function setData(){
-        global $DBH, $data, $path;
+        global $DBH, $data;
         try {
-            $STH = $DBH->prepare("INSERT INTO users VALUES (NULL, :full_name, :login, :email, :path, :password, :password_confirm)");
+            $STH = $DBH->prepare("INSERT INTO users VALUES (NULL, :full_name, :login, :email, :path, :password)");
             $STH->execute($data);
         }
         catch(PDOException $e) {
