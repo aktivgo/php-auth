@@ -2,7 +2,7 @@
     Authorization
  */
 
-$('.login-btn').click(function (e){
+$('button[id = "login-btn"]').click(function (e){
     e.preventDefault();
 
     $(`input`).removeClass('error');
@@ -49,24 +49,24 @@ $('input[name="avatar"]').change(function (e){
     Registration
  */
 
-$('.register-btn').click(function (e){
+$('button[id = "register-btn"]').click(function (e){
     e.preventDefault();
 
     $(`input`).removeClass('error');
 
-    let full_name = $('input[name = "full_name"]').val(),
+    let fullName = $('input[name = "fullName"]').val(),
         login = $('input[name = "login"]').val(),
         email = $('input[name = "email"]').val(),
         password = $('input[name = "password"]').val(),
-        password_confirm = $('input[name = "password_confirm"]').val();
+        passwordConfirm = $('input[name = "passwordConfirm"]').val();
 
     let formData = new FormData();
-    formData.append('full_name', full_name);
+    formData.append('fullName', fullName);
     formData.append('login', login);
     formData.append('email', email);
     formData.append('avatar', avatar);
     formData.append('password', password);
-    formData.append('password_confirm', password_confirm);
+    formData.append('passwordConfirm', passwordConfirm);
 
     $.ajax({
         url: 'includes/signup.php',
@@ -78,7 +78,7 @@ $('.register-btn').click(function (e){
         data: formData,
         success(data) {
             if(data.status){
-                document.location.href = '../auth.php'
+                document.location.href = '../../authorization.php'
             } else{
                 if(data.type === 1){
                     data.fields.forEach(function (field) {

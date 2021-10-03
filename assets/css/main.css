@@ -57,9 +57,10 @@ p {
 
 .logout {
     color: #AA4345;
+    align-self: center;
 }
 
-.required_fields {
+.required-fields {
     text-align: left;
 }
 
@@ -67,6 +68,33 @@ p {
     display: none;
 }
 
-.error{
+.error {
     border: 2px solid #AA4345;
+}
+
+.profile-image {
+    width: 200px;
+    align-self: center;
+    margin: 0 0 20px 0;
+}
+
+.required-field-star {
+    color: #AA4345;
+}
+
+.profile-name {
+    align-self: center;
+    margin: 0 0 20px 0;
+}
+
+.profile-form {
+    border: solid #AB9DAE;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.profile-email {
+    align-self: center;
+    color: #5281A1;
+    margin: 0 0 30px 0;
 }
