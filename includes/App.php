@@ -5,7 +5,8 @@ global $dbh;
 
 class App
 {
-    public static function LoadData ($dbh, $sql, $dataSelect) {
+    public static function LoadData($dbh, $sql, $dataSelect)
+    {
         try {
             $sth = $dbh->prepare($sql);
             $sth->execute($dataSelect);
@@ -16,7 +17,8 @@ class App
         }
     }
 
-    public static function SaveData ($dbh, $sql, $dataInsert) {
+    public static function SaveData($dbh, $sql, $dataInsert)
+    {
         try {
             $sth = $dbh->prepare($sql);
             $sth->execute($dataInsert);

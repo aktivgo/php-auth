@@ -12,7 +12,7 @@ $path = null;
 $password = $_POST['password'];
 $passwordConfirm = $_POST['passwordConfirm'];
 
-$user = App::LoadData($dbh, SELECT_USER, ['login' => $login]);
+$user = App::LoadData($dbh, SELECT_LOGIN, ['login' => $login]);
 if ($user) {
     $response = [
         'status' => false,
@@ -76,7 +76,7 @@ if (isset($_FILES['avatar'])) {
 
 $password = md5($password);
 
-App::SaveData($dbh, INSERT_USER,[
+App::SaveData($dbh, INSERT_USER, [
     'fullName' => $fullName,
     'login' => $login,
     'email' => $email,

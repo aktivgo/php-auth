@@ -29,8 +29,11 @@ if (!empty($errorFields)) {
 
 $password = md5($password);
 
-$user = App::LoadData($dbh, SELECT_USER, ['login' => $login]);
-if($user == false) {
+$user = App::LoadData($dbh, SELECT_USER, [
+    'login' => $login,
+    'password' => $password
+]);
+if ($user == false) {
     $response = [
         'status' => false,
         'message' => 'Неверный логин или пароль'
