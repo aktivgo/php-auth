@@ -2,7 +2,7 @@
     Authorization
  */
 
-$('button[id = "login-btn"]').click(function (e){
+$('button[id = "login-btn"]').click(function (e) {
     e.preventDefault();
 
     $(`input`).removeClass('error');
@@ -19,11 +19,11 @@ $('button[id = "login-btn"]').click(function (e){
             password: password
         },
         success(data) {
-            if(data.status){
+            if (data.status) {
                 document.location.href = '../profile.php'
-            } else{
+            } else {
 
-                if(data.type === 1){
+                if (data.type === 1) {
                     data.fields.forEach(function (field) {
                         $(`input[name="${field}"]`).addClass('error');
                     });
@@ -41,7 +41,7 @@ $('button[id = "login-btn"]').click(function (e){
 
 let avatar = false;
 
-$('input[name="avatar"]').change(function (e){
+$('input[name="avatar"]').change(function (e) {
     avatar = e.target.files[0];
 });
 
@@ -49,7 +49,7 @@ $('input[name="avatar"]').change(function (e){
     Registration
  */
 
-$('button[id = "register-btn"]').click(function (e){
+$('button[id = "register-btn"]').click(function (e) {
     e.preventDefault();
 
     $(`input`).removeClass('error');
@@ -77,10 +77,10 @@ $('button[id = "register-btn"]').click(function (e){
         cache: false,
         data: formData,
         success(data) {
-            if(data.status){
+            if (data.status) {
                 document.location.href = '../../authorization.php'
-            } else{
-                if(data.type === 1){
+            } else {
+                if (data.type === 1) {
                     data.fields.forEach(function (field) {
                         $(`input[name="${field}"]`).addClass('error');
                     });

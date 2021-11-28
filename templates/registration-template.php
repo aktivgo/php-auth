@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Регистрация</title>
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
 
@@ -45,14 +45,14 @@
     </p>
     <button type="submit" id="register-btn">Зарегистрироваться</button>
     <p>
-        Уже есть аккаунт? <a href="../authorization.php">Войти</a>
+        Уже есть аккаунт? <a href="/authorization.php">Войти</a>
     </p>
     <p class="message none"></p>
 
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 
 </body>
 </html>
